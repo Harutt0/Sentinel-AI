@@ -1,55 +1,68 @@
-🛡️ Sentinel-AI
-Sentinel-AI is a machine learning-driven security analysis tool designed to identify malicious web traffic within standard HTTP server logs. It moves beyond traditional static rules by using statistical isolation to find "hidden" threats.
+# 🛡️ Sentinel-AI
+**Sentinel-AI** is a high-performance, Machine Learning-driven log analysis tool developed in Python. It proactively identifies malicious web traffic by isolating anomalies in HTTP logs using the **Isolation Forest** algorithm.
+-----
 
-⚙️ How It Works
-The system follows a 4-step pipeline to transform raw text into security insights:
+### 🎯 Project Overview
+The objective of this project is to provide an intelligent security layer that moves beyond static rules. **Sentinel-AI** demonstrates how **Unsupervised Machine Learning** can be applied to cybersecurity to detect zero-day exploits, SQL injections, and unusual scanning patterns by analyzing behavioral deviations in web traffic.
 
-Log Parsing (Regex): The script uses optimized Regular Expressions to scan access.log files. It instantly converts unstructured strings into a structured Pandas DataFrame.
+### ✨ Key Features
+  * **ML-Driven Detection:** Uses the `Isolation Forest` algorithm to identify threats without needing predefined attack signatures.
+  * **Feature Engineering:** Automatically extracts critical metrics like URL length, HTTP status codes, and SQLi patterns.
+  * **High-Speed Parsing:** Optimized `Regex` engine to process large `access.log` files efficiently.
+  * **Interactive Visualization:** Generates statistical scatter plots to visually separate attackers (anomalies) from legitimate users.
+  * **Error Resilient:** Advanced data validation to handle malformed log entries and corrupted data.
 
-Feature Engineering: To help the AI "understand" the traffic, we extract numerical features:
+-----
+### 🛠️ Technical Stack
+| Category | Technology |
+| :--- | :--- |
+| **Language** | Python 3.11+ |
+| **ML Engine** | `scikit-learn` (Isolation Forest) |
+| **Data Science** | `pandas`, `numpy` |
+| **Visualization** | `seaborn`, `matplotlib` |
+| **Parsing** | `re` (Regular Expressions) |
 
-URL Length: Long, complex strings often indicate buffer overflow or injection attempts.
+-----
+### 🚀 Getting Started
 
-SQL Signatures: A boolean flag (Is Sql) that triggers when keywords like UNION or SELECT are detected.
+#### 1\. Installation
 
-Status Codes: High frequencies of 403 (Forbidden) or 404 (Not Found) usually signal directory brute-forcing.
+Clone the repository to your local machine:
 
-The Brain (Isolation Forest): Instead of teaching the AI what a "bad" request looks like, we use an unsupervised model. It assumes that normal traffic is frequent and similar. Anything that is "different" (an outlier) is isolated and labeled as an anomaly (-1).
-
-Visualization: Using Seaborn, the tool maps every request on a 2D plane. This allows humans to visually confirm attack clusters at a glance.
-
-🛠️ Installation & Setup
-Follow these steps to deploy Sentinel-AI on your local environment:
-
-1. Clone & Navigate
-Bash
-git clone https://github.com/Harutt0/Sentinel-AI
+```bash
+git clone https://github.com/CryzZ1/Sentinel-AI.git
 cd Sentinel-AI
+```
 
-3. Environment Setup
-Install the required data science and machine learning libraries:
+#### 2\. Install Dependencies
+Install the required machine learning and data processing libraries:
 
-Bash
-pip install pandas seaborn scikit-learn matplotlib
+```bash
+pip install -r requirements.txt
+```
 
-3. Data Preparation
-Place your target log file (e.g., access.log) into the project root directory. Ensure the file follows the standard Nginx/Apache combined log format.
+#### 3\. Run Analysis
+Place your `access.log` file in the root directory and execute:
 
-4. Execution
-Run the analysis engine:
-
-Bash
+```bash
 python main.py
-📊 Understanding the Output
-Once executed, Sentinel-AI provides two types of feedback:
+```
 
-Console Report: A filtered table showing the Top 10 most suspicious IP addresses and their activities.
+-----
 
-Anomaly Map: An interactive plot where Red dots represent identified threats and Green dots represent legitimate traffic.
+### 🛠️ Technical Specifications
+> **Note:** This project prioritizes analytical depth. It transforms unstructured raw logs into a 4-dimensional feature matrix for precise anomaly scoring.
 
-🎯 Use Cases
-Incident Response: Quickly identify the source of a DDoS or SQLi attack.
+  * **Isolation Forest:** Builds an ensemble of isolation trees to identify outliers with fewer splits.
+  * **Signature Analysis:** Integrated detection for `UNION`, `SELECT`, and `OR 1=1` patterns.
+  * **Performance:** Leverages `pandas` vectorized operations for near-instant analysis of thousands of rows.
 
-Security Auditing: Scan historical logs to find missed breaches.
+-----
+### 🙏 Acknowledgements
 
-Zero-Day Detection: Find unusual patterns that signature-based Firewalls might miss.
+  * Inspired by professional SIEM and IDS logic used in modern SOC environments.
+  * Thanks to the Scikit-Learn community for providing robust anomaly detection frameworks.
+
+**Thank you for checking out this project\! If you like it, feel free to leave a ⭐.**
+
+**Developed with passion for a safer web by Harutt0** 🚀
