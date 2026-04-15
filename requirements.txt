@@ -10,7 +10,6 @@ seaborn & matplotlib: Statistical data visualization framework for mapping secur
 re (Regex): Optimized regular expression engine for high-speed log parsing and pattern matching.
 
 Key Metrics:
-
 Detection Vectors: URL Length, HTTP Status Codes, POST/GET Analysis, and SQLi Signature Detection.
 
 Scalability: Designed to process thousands of log lines in seconds.
